@@ -1,14 +1,7 @@
-// Runs when HTML file is loaded
-// $(document).ready(function() {
-//   $('#user-email').on('input',function() {
-//       var email = $('#user-email').val()
-//       var message = 'Welcome Back, ' + email;
-//       $('.welcome-message').text(message);
-//   });
-// });
+var foodieApp = angular.module('foodieApp',['ngRoute']);  //initilization of angular app
 
-var foodieApp = angular.module('foodieApp',['ngRoute']);
-foodieApp.config(function ($routeProvider) {
+// code for Route page according to URL Changes occers
+foodieApp.config(function ($routeProvider) {    //$routeProvider is an object defined in ngRoute
 	$routeProvider
 	.when('/',{
 		templateUrl: 'pages/login.html',
@@ -18,188 +11,281 @@ foodieApp.config(function ($routeProvider) {
 		templateUrl: 'pages/main.html',
 		controller: 'mainController'
 	})
-  .when('/restaurant/:id', {
+	.when('/restaurant/:id', {
 		templateUrl: 'pages/restaurant.html',
 		controller: 'restaurantController'
 	})
 })
 
-foodieApp.controller('restaurantController',function($scope,$routeParams) {
-	$scope.restaurantId = $routeParams.id;
-	var restaurants = [{
-    	name: 'Farzi Cafe',
-    	address: '38/39, Level 1, Block E , Inner Circle, Connaught Place',
-    	location: 'Connaught Place',
-    	category: 'Casual Dining, Bar',
-    	vote: '4.2',
-    	cuisines: 'Modern Indian',
-    	cost: '2200',
-    	hours: '12 Noon to 1 AM (Mon-Sun)',
-    	image: 'https://b.zmtcdn.com/data/pictures/chains/2/308022/dabd30bd0b000ea859ada9a08a0132fc.jpg'
-    },{
-    name: 'Rajinder Da Dhaba',
-    address: 'AB-14, Safdarjung Enclave Market, Safdarjung, New Delhi',
-    location: 'Safdarjung',
-    category: 'Quick Bites',
-    vote: '4.2',
-    cuisines: 'North Indian, Mughlai, Chinese, Rolls, Kebab',
-    cost: '800',
-    hours: '12 Noon to 1 AM (Mon-Sun)',
-    image: 'https://b.zmtcdn.com/data/res_imagery/1777_RESTAURANT_5a6ec7deac163f634e288bfb2ebf3380.jpg'
-    },{
-    name: 'Big Dragon',
-    address: 'B-41, Ground Floor, Main Market, Kalkaji, New Delhi',
-    location: 'Kalkaji',
-    category: 'Casual Dining',
-    vote: '3.5',
-    cuisines: 'Chinese, Thai',
-    cost: '800',
-    hours: '10 AM to 10 PM (Mon-Sun)',
-    image: 'https://b.zmtcdn.com/data/res_imagery/309737_RESTAURANT_cfe34e4b9b85facf1b53ae373ed0b927.jpg'
-    },{
-    name: 'Trend',
-    address: 'CG 2-3, Ground Floor, Ansal Plaza, Khel Gaon Marg, New Delhi',
-    location: 'Khel Gaon Marg',
-    category: 'Casual Dining',
-    vote: '4.4',
-    cuisines: 'European, North Indian, Salad',
-    cost: '2000',
-    hours: '12 Noon to 1 AM (Mon-Sun)',
-    image: 'https://b.zmtcdn.com/data/res_imagery/18511032_RESTAURANT_8866eba94cb02e910640d75661e01fd0.jpg'
-    },{
-    name: 'Hong Kong Express',
-    address: '127, Flyover Market, Defence Colony, New Delhi',
-    location: 'Defence Colony',
-    category: 'Takeaway, Delivery',
-    vote: '4.0',
-    cuisines: 'Chinese, Thai',
-    cost: '700',
-    hours: '11 AM to 11:30 PM',
-    image: 'https://b.zmtcdn.com/data/res_imagery/566_CHAIN_bedb587561a89ebf8e7d710ab20b887c.jpg'
-    },{
-    name: 'Cafe Yell',
-    address: '35, Ground Floor, Defence Colony Market, Defence Colony, New Delhi',
-    location: 'Defence Colony',
-    category: 'Café',
-    vote: '4.4',
-    cuisines: 'Cafe, Continental, Italian',
-    cost: '1000',
-    hours: '12 Noon to 1 AM (Mon-Sun)',
-    image: 'https://b.zmtcdn.com/data/res_imagery/18415346_RESTAURANT_5daa9e1c5f86214c44cfb4b4124a76c3.jpg'
-    },{
-    name: 'Wok Me ',
-    address: '38, Ground Floor, Zamrudpur, Greater Kailash (GK) 1, New Delhi',
-    location: 'Greater Kailash (GK) 1',
-    category: 'Casual Dining',
-    vote: '4.0',
-    cuisines: 'Chinese, Asian, Healthy Food',
-    cost: '550',
-    hours: '12 Noon to 1 AM (Mon-Sun)',
-    image: 'https://b.zmtcdn.com/data/res_imagery/18533596_CHAIN_4baa4678f248523fe576a07c49d5edb8.png'
-    },{
-    name: 'TukTuk',
-    address: 'Plaza II, South Extension 2, New Delhi',
-    location: 'South Extension 2',
-    category: 'Quick Bites',
-    vote: '4.3',
-    cuisines: 'Thai, Malaysian, Chinese',
-    cost: '1000',
-    hours: '12 Noon to 1 AM (Mon-Sun)',
-    image: 'https://b.zmtcdn.com/data/res_imagery/18451269_RESTAURANT_a4356b83a7e134d4e1defbb80a4110a2.png'
-    } ]
-	$scope.restaurant = restaurants[$routeParams.id - 1];
-})
 
 foodieApp.controller('loginController',function($scope) {
-	$scope.goToHome = function() {
-		// console.log('Do Something')
-    $location.url('home')
-
-	}
 })
-
 
 foodieApp.controller('mainController',function($scope) {
-  $scope.restaurants = [{
-	name: 'Farzi Cafe',
-	address: '38/39, Level 1, Block E , Inner Circle, Connaught Place',
-	location: 'Connaught Place',
-	category: 'Casual Dining, Bar',
-	vote: '4.2',
-	cuisines: 'Modern Indian',
-	cost: '2200',
-	hours: '12 Noon to 1 AM (Mon-Sun)',
-	image: 'https://b.zmtcdn.com/data/pictures/chains/2/308022/dabd30bd0b000ea859ada9a08a0132fc.jpg'
-},{
-name: 'Rajinder Da Dhaba',
-address: 'AB-14, Safdarjung Enclave Market, Safdarjung, New Delhi',
-location: 'Safdarjung',
-category: 'Quick Bites',
-vote: '4.2',
-cuisines: 'North Indian, Mughlai, Chinese, Rolls, Kebab',
-cost: '800',
-hours: '12 Noon to 1 AM (Mon-Sun)',
-image: 'https://b.zmtcdn.com/data/res_imagery/1777_RESTAURANT_5a6ec7deac163f634e288bfb2ebf3380.jpg'
-},{
-name: 'Big Dragon',
-address: 'B-41, Ground Floor, Main Market, Kalkaji, New Delhi',
-location: 'Kalkaji',
-category: 'Casual Dining',
-vote: '3.5',
-cuisines: 'Chinese, Thai',
-cost: '800',
-hours: '10 AM to 10 PM (Mon-Sun)',
-image: 'https://b.zmtcdn.com/data/res_imagery/309737_RESTAURANT_cfe34e4b9b85facf1b53ae373ed0b927.jpg'
-},{
-name: 'Trend',
-address: 'CG 2-3, Ground Floor, Ansal Plaza, Khel Gaon Marg, New Delhi',
-location: 'Khel Gaon Marg',
-category: 'Casual Dining',
-vote: '4.4',
-cuisines: 'European, North Indian, Salad',
-cost: '2000',
-hours: '12 Noon to 1 AM (Mon-Sun)',
-image: 'https://b.zmtcdn.com/data/res_imagery/18511032_RESTAURANT_8866eba94cb02e910640d75661e01fd0.jpg'
-},{
-name: 'Hong Kong Express',
-address: '127, Flyover Market, Defence Colony, New Delhi',
-location: 'Defence Colony',
-category: 'Takeaway, Delivery',
-vote: '4.0',
-cuisines: 'Chinese, Thai',
-cost: '700',
-hours: '11 AM to 11:30 PM',
-image: 'https://b.zmtcdn.com/data/res_imagery/566_CHAIN_bedb587561a89ebf8e7d710ab20b887c.jpg'
-},{
-name: 'Cafe Yell',
-address: '35, Ground Floor, Defence Colony Market, Defence Colony, New Delhi',
-location: 'Defence Colony',
-category: 'Café',
-vote: '4.4',
-cuisines: 'Cafe, Continental, Italian',
-cost: '1000',
-hours: '12 Noon to 1 AM (Mon-Sun)',
-image: 'https://b.zmtcdn.com/data/res_imagery/18415346_RESTAURANT_5daa9e1c5f86214c44cfb4b4124a76c3.jpg'
-},{
-name: 'Wok Me ',
-address: '38, Ground Floor, Zamrudpur, Greater Kailash (GK) 1, New Delhi',
-location: 'Greater Kailash (GK) 1',
-category: 'Casual Dining',
-vote: '4.0',
-cuisines: 'Chinese, Asian, Healthy Food',
-cost: '550',
-hours: '12 Noon to 1 AM (Mon-Sun)',
-image: 'https://b.zmtcdn.com/data/res_imagery/18533596_CHAIN_4baa4678f248523fe576a07c49d5edb8.png'
-},{
-name: 'TukTuk',
-address: 'Plaza II, South Extension 2, New Delhi',
-location: 'South Extension 2',
-category: 'Quick Bites',
-vote: '4.3',
-cuisines: 'Thai, Malaysian, Chinese',
-cost: '1000',
-hours: '12 Noon to 1 AM (Mon-Sun)',
-image: 'https://b.zmtcdn.com/data/res_imagery/18451269_RESTAURANT_a4356b83a7e134d4e1defbb80a4110a2.png'
-} ]
+	$scope.restaurants = [{
+													id: 1,
+													name: 'Rajinder Da Dhaba',
+													address: 'AB-14, Safdarjung Enclave Market, Safdarjung, New Delhi',
+													location: 'Safdarjung',
+													category: 'Casual Dining, Bar',
+													vote: '4.0',
+													noofvotes: '400 Votes',
+													cuisines: 'Chinese, Thai',
+													url: 'Rajinder Da Dhaba',
+													cost: '700',
+													hours: '11:30 AM to 11 PM (Mon-Sun)',
+													bestDish: {
+																			name: 'Corn Pizza',
+																			image: 'http://noblepig.com/images/2016/06/Avocado-and-Three-Bean-Salad-is-perfect-for-a-summertime-barbecue-side-dish.JPG'
+																		},
+													image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3f-_yzrJq4F042m-9qIfSr_Ye69ncgDK9aZxtjwOph7ExEGZcdQ'
+												},
+												{
+													id: 2,
+													name: 'Big Dragon',
+													address: 'B-41, Ground Floor, Main Market, Kalkaji, New Delhi',
+													location: 'Kalkaji',
+													category: 'Quick Bites, Bar',
+													vote: '4.2',
+													noofvotes: '400 Votes',
+													cuisines: 'South Indian',
+													url: 'Idlicious',
+													cost: '250',
+													hours: '8:30 AM to 2:30 PM (Mon-Sat)',
+													image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_dY-UiYvGUz5HSy3ATyR-2mBU5YD2L5QMj4dVu7lIAIHqAXSjAQ'
+											},
+											{
+												id: 3,
+												name: 'Cream California',
+												address: '917/22, Opposite Hotel Roopali, FC Road, Pune',
+												location: 'FC Road',
+												category: 'Dessert Parlor',
+												vote: '4.2',
+												noofvotes: '260 Votes',
+												cuisines: 'Ice Cream, Desserts',
+												url: 'Cream California',
+												cost: '1000',
+												hours: '9 AM to 11:30 PM (Mon-Sun)',
+												image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9vqv4_9lvEhauSuO-_MdBG3Xyyd1-NI9rRLBnSQEOuy_E2kJjQ'
+											},
+											{
+												id: 4,
+												name: 'TukTuk',
+												address: 'Plaza II, South Extension 2, New Delhi',
+												location: 'South Extension 2',
+												category: 'Casual Dining',
+												vote: '3.9',
+												noofvotes: '410 Votes',
+												cuisines: 'North Indian, Street Food',
+												url: 'Taareef',
+												cost: '1200',
+												hours: '11:30 AM to 11 PM (Mon-Sun)',
+												image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4B-V8kaL4n-LtvPDmfby_h7IP9HRlt68-XSYRWee5TQR2ORPWoQ'
+											},
+											{
+												id: 5,
+												name: 'Farzi Cafe',
+												address: '38/39, Level 1, Block E , Inner Circle, Connaught Place',
+												location: 'Connaught Place',
+												category: 'Casual Dining, Bar',
+												vote: '4.2',
+												cuisines: 'Modern Indian',
+												cost: '2600',
+												hours: '12 Noon to 1 AM (Mon-Sun)',
+												image: 'https://b.zmtcdn.com/data/pictures/chains/2/308022/dabd30bd0b000ea859ada9a08a0132fc.jpg'
+											},
+											{
+												id: 6,
+												name: 'McDonals',
+												address: '38/39, Level 1, Block E , Inner Circle, Connaught Place',
+												location: 'Connaught Place',
+												category: 'Casual Dining, Bar',
+												vote: '4.2',
+												cuisines: 'Modern Indian',
+												cost: '2200',
+												hours: '12 Noon to 1 AM (Mon-Sun)',
+												image: 'https://b.zmtcdn.com/data/pictures/chains/2/308022/dabd30bd0b000ea859ada9a08a0132fc.jpg'
+											},
+											{
+												id: 7,
+												name: 'Burgrill',
+												address: 'DSS 310, Sector 9, Panchkula',
+												location: 'Sector 9, Panchkula',
+												category: 'Quick Bites, Bar',
+												vote: '4.0',
+												noofvotes: '360 Votes',
+												cuisines: 'Burger,Fast Food,Beverages',
+												url: 'Burgrill',
+												cost: '1500',
+												hours: '12 Noon to 11 PM (Mon-Sun)',
+												image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUL31oTqn07dDzIPDaE32-C8wKPenINJXMPEf82g1jQY0PF5PL'
+											},
+											{
+												id: 8,
+												name: 'Chessiano Pizza',
+												address: 'Opposite Pantaloons, Senapati Bapat Road, Pune',
+												location: 'Senapati Bapat Road',
+												category: 'Quick Bites',
+												vote: '3.3',
+												noofvotes: '460 Votes',
+												cuisines: 'Pizza',
+												url: 'Chessiano Pizza',
+												cost: '1800',
+												hours: '11 AM to 1 AM (Mon-Sun)',
+												image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk_TLf0yvTv4vaYBT93zC0a-HX7O2c7DzybqlMvpDbSfQxPXrxtA'
+										}]
+						});
 
-})
+
+// controller for url change when click on login button
+foodieApp.controller('loginController',function($scope,$location) {
+							$scope.goToHome = function() {
+								// console.log('Do Something')
+							$location.url('home')
+								// console.log($location.url())
+						}
+				})
+
+// restaurent information shows here by this controller using routing parameter it changes each time using :id
+foodieApp.controller('restaurantController',function($scope,$routeParams,$http) {
+	$scope.restaurantId = $routeParams.id;
+	$scope.ingredients = [];
+	var restaurants = [{
+													id: 1,
+													name: 'Rajinder Da Dhaba',
+													address: 'AB-14, Safdarjung Enclave Market, Safdarjung, New Delhi',
+													location: 'Safdarjung',
+													category: 'Casual Dining, Bar',
+													vote: '4.0',
+													noofvotes: '400 Votes',
+													cuisines: 'Chinese, Thai',
+													url: 'Rajinder Da Dhaba',
+													cost: '700',
+													hours: '11:30 AM to 11 PM (Mon-Sun)',
+													bestDish: {
+																			name: 'Corn Pizza',
+																			image: 'http://noblepig.com/images/2016/06/Avocado-and-Three-Bean-Salad-is-perfect-for-a-summertime-barbecue-side-dish.JPG'
+																		},
+													image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3f-_yzrJq4F042m-9qIfSr_Ye69ncgDK9aZxtjwOph7ExEGZcdQ'
+												},
+												{
+													id: 2,
+													name: 'Big Dragon',
+													address: 'B-41, Ground Floor, Main Market, Kalkaji, New Delhi',
+													location: 'Kalkaji',
+													category: 'Quick Bites, Bar',
+													vote: '4.2',
+													noofvotes: '400 Votes',
+													cuisines: 'South Indian',
+													url: 'Idlicious',
+													cost: '250',
+													hours: '8:30 AM to 2:30 PM (Mon-Sat)',
+													image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_dY-UiYvGUz5HSy3ATyR-2mBU5YD2L5QMj4dVu7lIAIHqAXSjAQ'
+											},
+											{
+												id: 3,
+												name: 'Cream California',
+												address: '917/22, Opposite Hotel Roopali, FC Road, Pune',
+												location: 'FC Road',
+												category: 'Dessert Parlor',
+												vote: '4.2',
+												noofvotes: '260 Votes',
+												cuisines: 'Ice Cream, Desserts',
+												url: 'Cream California',
+												cost: '1000',
+												hours: '9 AM to 11:30 PM (Mon-Sun)',
+												image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9vqv4_9lvEhauSuO-_MdBG3Xyyd1-NI9rRLBnSQEOuy_E2kJjQ'
+											},
+											{
+												id: 4,
+												name: 'TukTuk',
+												address: 'Plaza II, South Extension 2, New Delhi',
+												location: 'South Extension 2',
+												category: 'Casual Dining',
+												vote: '3.9',
+												noofvotes: '410 Votes',
+												cuisines: 'North Indian, Street Food',
+												url: 'Taareef',
+												cost: '1200',
+												hours: '11:30 AM to 11 PM (Mon-Sun)',
+												image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4B-V8kaL4n-LtvPDmfby_h7IP9HRlt68-XSYRWee5TQR2ORPWoQ'
+											},
+											{
+												id: 5,
+												name: 'Farzi Cafe',
+												address: '38/39, Level 1, Block E , Inner Circle, Connaught Place',
+												location: 'Connaught Place',
+												category: 'Casual Dining, Bar',
+												vote: '4.2',
+												cuisines: 'Modern Indian',
+												cost: '2600',
+												hours: '12 Noon to 1 AM (Mon-Sun)',
+												image: 'https://b.zmtcdn.com/data/pictures/chains/2/308022/dabd30bd0b000ea859ada9a08a0132fc.jpg'
+											},
+											{
+												id: 6,
+												name: 'McDonals',
+												address: '38/39, Level 1, Block E , Inner Circle, Connaught Place',
+												location: 'Connaught Place',
+												category: 'Casual Dining, Bar',
+												vote: '4.2',
+												cuisines: 'Modern Indian',
+												cost: '2200',
+												hours: '12 Noon to 1 AM (Mon-Sun)',
+												image: 'https://b.zmtcdn.com/data/pictures/chains/2/308022/dabd30bd0b000ea859ada9a08a0132fc.jpg'
+											},
+											{
+												id: 7,
+												name: 'Burgrill',
+												address: 'DSS 310, Sector 9, Panchkula',
+												location: 'Sector 9, Panchkula',
+												category: 'Quick Bites, Bar',
+												vote: '4.0',
+												noofvotes: '360 Votes',
+												cuisines: 'Burger,Fast Food,Beverages',
+												url: 'Burgrill',
+												cost: '1500',
+												hours: '12 Noon to 11 PM (Mon-Sun)',
+												image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUL31oTqn07dDzIPDaE32-C8wKPenINJXMPEf82g1jQY0PF5PL'
+											},
+											{
+												id: 8,
+												name: 'Chessiano Pizza',
+												address: 'Opposite Pantaloons, Senapati Bapat Road, Pune',
+												location: 'Senapati Bapat Road',
+												category: 'Quick Bites',
+												vote: '3.3',
+												noofvotes: '460 Votes',
+												cuisines: 'Pizza',
+												url: 'Chessiano Pizza',
+												cost: '1800',
+												hours: '11 AM to 1 AM (Mon-Sun)',
+												image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk_TLf0yvTv4vaYBT93zC0a-HX7O2c7DzybqlMvpDbSfQxPXrxtA'
+										}]
+
+	$scope.restaurant = restaurants[$routeParams.id - 1];
+
+	$scope.ingredients = [];  // empty array
+	  $scope.getIngredients = function(url) {
+	    var data = '{"inputs":[{"data":{"image":{"url":"' + url + '"}}}]}'
+	    $http({
+	    	'method': 'POST',
+	    	'url': 'https://api.clarifai.com/v2/models/bd367be194cf45149e75f01d59f77ba7/outputs',
+	    	'headers': {
+	    		'Authorization': 'Key e2759fa8b252401ca1ef8fc620f8f325', //api details
+	    		'Content-Type': 'application/json'
+	    	},
+	    	'data': data,
+	    }).then(function (response) {
+	      var list = response.data.outputs[0].data.concepts;
+	        for (var i =0; i < list.length; i++) {
+	          $scope.ingredients.push(list[i].name)
+	          //  list += '<div class="ingredient">' + ingredients[i].name + '</div>'
+	        }
+	        // console.log(list)
+	      // $('.ingredients').html(list);
+	      }, function (xhr) {
+	        console.log(xhr);
+	      });
+	}
+	})
