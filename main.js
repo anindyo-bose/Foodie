@@ -6,8 +6,7 @@
 //       $('.welcome-message').text(message);
 //   });
 // });
-foodieApp.controller('loginController',function($scope) {
-})
+
 var foodieApp = angular.module('foodieApp',['ngRoute']);
 foodieApp.config(function ($routeProvider) {
 	$routeProvider
@@ -19,6 +18,8 @@ foodieApp.config(function ($routeProvider) {
 		templateUrl: 'pages/main.html',
 		controller: 'mainController'
 	})
+})
+foodieApp.controller('loginController',function($scope) {
 })
 foodieApp.controller('mainController',function($scope) {
   $scope.restaurants = [{
